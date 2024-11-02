@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
-$user = "root";       // Usuário do banco de dados
-$password = "01041993";     // Senha do banco de dados
-$database = "atendimento_bot";  // Nome do banco de dados
+$user = "root";       
+$password = "";     
+$database = "atendimento_bot";  
 
 $conn = new mysqli($host, $user, $password, $database);
 

@@ -7,7 +7,7 @@ $endereco = $_GET['endereco'] ?? '';
 $data = $_GET['data'] ?? '';
 $ordenar_por = $_GET['ordenar_por'] ?? 'id';
 
-// Construindo a consulta SQL com filtros
+
 $query = "SELECT * FROM agendamentos WHERE 1=1";
 
 if (!empty($nome)) {
@@ -23,10 +23,10 @@ if (!empty($data)) {
     $query .= " AND data = '" . $conn->real_escape_string($data) . "'";
 }
 
-// Adiciona a cláusula ORDER BY com base no valor do parâmetro
+
 $query .= " ORDER BY " . $conn->real_escape_string($ordenar_por) . " DESC";
 
-date_default_timezone_set('America/Sao_Paulo'); // Ajuste para o seu fuso horário
+date_default_timezone_set('America/Sao_Paulo'); 
 
 $now = new DateTime();
 
@@ -46,15 +46,15 @@ $result = $conn->query($query);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Formatar o campo de telefone
+            // formatar o campo de telefone
             $('#contato').on('input', function() {
-                let telefone = $(this).val().replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+                let telefone = $(this).val().replace(/\D/g, ''); // remove todos os caracteres não numéricos
                 if (telefone.length > 10) {
-                    telefone = telefone.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3"); // Formato (XX) XXXXX-XXXX
+                    telefone = telefone.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3"); // formato (XX) XXXXX-XXXX
                 } else {
-                    telefone = telefone.replace(/^(\d{2})(\d{4})(\d{0,4})$/, "($1) $2-$3"); // Formato (XX) XXXX-XXXX
+                    telefone = telefone.replace(/^(\d{2})(\d{4})(\d{0,4})$/, "($1) $2-$3"); 
                 }
-                $(this).val(telefone); // Atualiza o valor do campo
+                $(this).val(telefone); 
             });
         });
     </script>
@@ -114,11 +114,11 @@ $result = $conn->query($query);
             </tr>
             <?php while ($row = $result->fetch_assoc()): ?>
                 <?php
-                // Convertendo a data e hora do agendamento para um objeto DateTime
+  
                 $agendamentoDataHora = new DateTime($row['data'] . ' ' . $row['horario']);
                 $intervalo = $now->diff($agendamentoDataHora);
 
-                // Definindo a classe de cor com base na diferença de tempo
+
                 $daysLeft = (int) $intervalo->format('%r%a'); // dias até o agendamento
                 $corClasse = '';
 

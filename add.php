@@ -11,16 +11,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $endereco = $_POST['endereco'];
     $defeito_resumo = $_POST['defeito_resumo'];
 
-    // Verificar se o horário está disponível
     $checkQuery = "SELECT * FROM horarios WHERE data = '$data' AND horario = '$horario' AND disponivel = 1";
     $checkResult = $conn->query($checkQuery);
 
     if ($checkResult->num_rows > 0) {
-        // Inserir o novo agendamento
+
         $query = "INSERT INTO agendamentos (nome, contato, bairro, equipamento, horario, data, endereco, defeito_resumo) VALUES ('$nome', '$contato', '$bairro', '$equipamento', '$horario', '$data', '$endereco', '$defeito_resumo')";
         $conn->query($query);
-        
-        // Atualizar a tabela de horários para marcar o horário como não disponível
+
         $updateQuery = "UPDATE horarios SET disponivel = 0 WHERE data = '$data' AND horario = '$horario'";
         $conn->query($updateQuery);
         
@@ -40,27 +38,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Formatar o campo de telefone
+
             $('#telefone').on('input', function() {
-                let telefone = $(this).val().replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+                let telefone = $(this).val().replace(/\D/g, ''); 
                 if (telefone.length > 10) {
-                    telefone = telefone.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3"); // Formato (XX) XXXXX-XXXX
+                    telefone = telefone.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3"); 
                 } else {
-                    telefone = telefone.replace(/^(\d{2})(\d{4})(\d{0,4})$/, "($1) $2-$3"); // Formato (XX) XXXX-XXXX
+                    telefone = telefone.replace(/^(\d{2})(\d{4})(\d{0,4})$/, "($1) $2-$3"); 
                 }
-                $(this).val(telefone); // Atualiza o valor do campo
+                $(this).val(telefone);
             });
 
-            // Ao selecionar uma data, buscar horários disponíveis
+
             $('#data').change(function() {
                 const selectedDate = $(this).val();
                 
                 $.ajax({
-                    url: 'get_horarios_disponiveis.php',  // Script que retorna os horários disponíveis
+                    url: 'get_horarios_disponiveis.php',  
                     type: 'POST',
                     data: { data: selectedDate },
                     success: function(response) {
-                        $('#horario').html(response); // Atualiza o dropdown de horário
+                        $('#horario').html(response); 
                     }
                 });
             });
