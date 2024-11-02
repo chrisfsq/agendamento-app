@@ -1,0 +1,412 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo geral da página */
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f4f6f8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #2c3e50;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Botão Adicionar Novo Agendamento */
+a[href="add.php"] {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #27ae60;
+    color: #fff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+a[href="add.php"]:hover {
+    background-color: #2ecc71;
+}
+
+/* Formulário de Pesquisa */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+form label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+form input[type="text"], 
+form input[type="date"] {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+}
+
+/* Botão de Busca */
+form button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    grid-column: span 2; /* Para ocupar duas colunas em telas maiores */
+}
+
+form button:hover {
+    background-color: #2980b9;
+}
+
+/* Responsivo para dispositivos menores */
+@media (max-width: 768px) {
+    form {
+        grid-template-columns: 1fr;
+    }
+
+    form button {
+        grid-column: span 1; /* O botão ocupa uma linha completa em telas menores */
+    }
+}
+
+
+/* Tabela de Agendamentos */
+table {
+    width: 100%;
+    max-width: 5000px;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Definindo a largura mínima das colunas "Nome" e "Contato" */
+.agendamentos th:nth-child(2), /* Coluna Nome */
+.agendamentos td:nth-child(2) {
+    min-width: 200px;
+    width: auto;
+}
+
+.agendamentos th:nth-child(3), /* Coluna Contato */
+.agendamentos td:nth-child(3) {
+    min-width: 150px;
+    width: auto;
+}
+
+/* Contêiner da tabela para rolagem horizontal */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+/* Fixando a largura da tabela */
+.agendamentos {
+    width: 100%;
+    table-layout: auto; /* Ajuste automático para evitar sobreposição */
+    font-size: 0.9em;
+}
+
+/* Permite a quebra de texto em múltiplas linhas nas células */
+.agendamentos td {
+    word-break: break-word;
+    white-space: normal;
+}
+
+
+
+/* Responsivo: layout estilo cartão para telas menores */
+@media (max-width: 768px) {
+    .table-container {
+        display: block;
+    }
+    
+    /* Ajuste para ocultar colunas secundárias */
+    .agendamentos th:nth-child(1), /* ID */
+    .agendamentos td:nth-child(1),
+    .agendamentos th:nth-child(4), /* Bairro */
+    .agendamentos td:nth-child(4),
+    .agendamentos th:nth-child(6), /* Horário */
+    .agendamentos td:nth-child(6),
+    .agendamentos th:nth-child(9), /* Defeito Resumo */
+    .agendamentos td:nth-child(9) {
+        display: none;
+    }
+
+    /* Tabela em estilo cartão */
+    .agendamentos, .agendamentos thead, .agendamentos tbody, .agendamentos tr, .agendamentos th, .agendamentos td {
+        display: block;
+        width: 100%;
+    }
+    
+    .agendamentos tr {
+        margin-bottom: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .agendamentos td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .agendamentos td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+        color: #3498db;
+    }
+}
+
+
+
+table th, 
+table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+    color: #555;
+    white-space: nowrap;
+}
+
+table th {
+    background-color: #3498db;
+    color: #fff;
+    font-size: 14px;
+}
+
+table tr {
+    text-align: center;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+table td a {
+    color: #3498db;
+}
+
+table td a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos das ações */
+table td:last-child {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+table td a {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+}
+
+table td a[href*="edit"] {
+    background-color: #f39c12;
+    color: white;
+}
+
+table td a[href*="delete"] {
+    background-color: #e74c3c;
+    color: white;
+}
+
+table td a:hover {
+    opacity: 0.8;
+}
+
+/* Cores para as classes baseadas na proximidade da data */
+.verde {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.amarelo {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.laranja {
+    background-color: #ffe5b4;
+    color: #8a4b08;
+}
+
+.vermelho {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Estilo para a legenda */
+.legenda {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap; /* Permite que as legendas quebrem para a próxima linha */
+    gap: 15px; /* Espaçamento entre os itens da legenda */
+}
+
+.legenda span {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    white-space: nowrap; /* Impede a quebra de linha dentro dos spans */
+}
+
+/* Responsividade - ajuste para telas menores */
+@media (max-width: 600px) {
+    .legenda {
+        flex-direction: column; /* Coloca legendas em coluna em telas pequenas */
+    }
+}
+
+/* Estilo para os ícones de ação com dica de ferramenta */
+a[href*="edit"]::after,
+a[href*="delete"]::after {
+    content: attr(title);
+    position: absolute;
+    visibility: hidden;
+    background-color: #333;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+a[href*="edit"]:hover::after {
+    content: "Editar";
+    visibility: visible;
+    top: -20px;
+}
+
+a[href*="delete"]:hover::after {
+    content: "Excluir";
+    visibility: visible;
+    top: -20px;
+}
+
+/* Estilo para os ícones de ação com dica de ferramenta */
+a[href*="edit"]::after,
+a[href*="delete"]::after {
+    content: attr(title);
+    position: absolute;
+    visibility: hidden;
+    background-color: #333;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+a[href*="edit"]:hover::after {
+    content: "Editar";
+    visibility: visible;
+    top: -20px;
+}
+
+a[href*="delete"]:hover::after {
+    content: "Excluir";
+    visibility: visible;
+    top: -20px;
+}
+
+
+/* Responsividade para Mobile */
+@media (max-width: 768px) {
+    /* Ajustando o Formulário de Pesquisa */
+    form {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    form label, 
+    form input[type="text"], 
+    form input[type="date"], 
+    form button {
+        width: 100%;
+        flex: none;
+    }
+    
+    /* Tabela no Estilo Cartão para Mobile */
+    table, 
+    table thead, 
+    table tbody, 
+    table tr, 
+    table th, 
+    table td {
+        display: block;
+        width: 100%;
+    }
+
+    table tr {
+        margin-bottom: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    table th {
+        display: none;
+    }
+
+    table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #3498db;
+    }
+}
